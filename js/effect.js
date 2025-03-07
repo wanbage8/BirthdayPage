@@ -270,15 +270,15 @@ $('document').ready(function(){
 	});
 
 	let date = {
-		timestamp : 1203264000000,
-		date : '2008-02-18'
+		timestamp : 1203177600000,
+		date : '2008-02-17'
 	}
 
-	let time = getDate().year - 2008
+	let time = ((getDate().timeStatus - date.timestamp) / 1000 / 60 / 60 / 24 / 365).toFixed(0)
 	$('#age').text(time)
 
 	if (time >= 18){
-		$('#age-good').delay(12500).fadeIn('slow')
+		$('#age-good').delay(12000).fadeIn('slow')
 	}
 
 	setInterval(()=>{
@@ -289,7 +289,6 @@ $('document').ready(function(){
 	function calculateTimeDifference(givenTimestamp) {
 		// 获取当前时间的时间戳（毫秒）
 		const currentTimestamp = getDate().timeStatus
-
 		// 计算时间差（毫秒）
 		const diffInMilliseconds = currentTimestamp - givenTimestamp;
 
