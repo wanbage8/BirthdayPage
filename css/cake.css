@@ -14,7 +14,7 @@
 .cake{
   position:absolute;
   display:none;
- // top:30%; 
+// top:30%;
   left:50%;
   margin-left:-150px;
   width:300px; height:300px;
@@ -33,7 +33,7 @@
 }
 
 .cake:before{
-  
+
 }
 
 /* ============================================== Candle
@@ -75,7 +75,7 @@
   position:absolute;
   top:-12px; left:50%;
   margin-left:-10px;
-  //margin-top:-15px;
+//margin-top:-15px;
   width:20px; height:37.5px;
 }
 
@@ -90,10 +90,10 @@
 
 .fuego:nth-child(2){
   -webkit-animation:fuego 1.5s infinite;
-   -moz-animation:fuego 1.5s infinite;
-    -o-animation:fuego 1.5s infinite;
-     -ms-animation:fuego 1.5s infinite;
-      animation:fuego 1.5s infinite;
+  -moz-animation:fuego 1.5s infinite;
+  -o-animation:fuego 1.5s infinite;
+  -ms-animation:fuego 1.5s infinite;
+  animation:fuego 1.5s infinite;
 
 }
 
@@ -268,4 +268,18 @@ p{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.date-box{
+  text-align: center;
+  color: #C4515C;
+  font-weight: bold;
+  font-family: 'Signika', sans-serif;
+  font-size: 18px;
+  text-shadow: 2px 2px 2px #FFF;
+}
+
+#age-good{
+  display: none;
+  margin-top: 40px;
 }

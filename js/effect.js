@@ -40,7 +40,7 @@ $('document').ready(function(){
 
 	var vw;
 	$(window).resize(function(){
-		 vw = $(window).width()/2;
+		vw = $(window).width()/2;
 		$('#b1,#b2,#b3,#b4,#b5,#b6,#b7,#b8').stop();
 		$('#b11').animate({top:240, left: vw-400*size},500);
 		$('#b22').animate({top:240, left: vw-300*size},500);
@@ -66,8 +66,8 @@ $('document').ready(function(){
 	});
 	$('#play').click(function(){
 		var audio = $('.song')[0];
-        audio.play();
-        $('#bulb_yellow').addClass('bulb-glow-yellow-after');
+		audio.play();
+		$('#bulb_yellow').addClass('bulb-glow-yellow-after');
 		$('#bulb_red').addClass('bulb-glow-red-after');
 		$('#bulb_blue').addClass('bulb-glow-blue-after');
 		$('#bulb_green').addClass('bulb-glow-green-after');
@@ -162,11 +162,11 @@ $('document').ready(function(){
 		loopSix();
 		loopSeven();
 		loopEight();
-		
+
 		$(this).fadeOut('slow').delay(5000).promise().done(function(){
 			$('#cake_fadein').fadeIn('slow');
 		});
-	});	
+	});
 
 	$('#cake_fadein').click(function(){
 		$('.cake').fadeIn('slow');
@@ -182,9 +182,9 @@ $('document').ready(function(){
 		});
 	});
 
-		
+
 	$('#wish_message').click(function(){
-		 vw = $(window).width()/2;
+		vw = $(window).width()/2;
 
 		$('#b1,#b2,#b3,#b4,#b5,#b6,#b7,#b8').stop();
 		$('#b1').attr('id','b11');
@@ -209,19 +209,21 @@ $('document').ready(function(){
 			$('#story').fadeIn('slow');
 		});
 	});
-	
+
 	$('#story').click(function(){
 		$(this).fadeOut('slow');
 		$('.cake').fadeOut('fast').promise().done(function(){
 			$('.cake-cover').css('margin-top', '0');
-			$('.message').fadeIn('slow');
+			$('.message').fadeIn('slow').delay(3000)
+			$('#user-date').delay(3000).fadeIn('slow')
+			$('#user-date-msg').delay(4500).fadeIn('slow')
 		});
 
 		for (var i = 1; i <= 8; i++)
-		$('#b'+i+i).fadeOut('slow').delay(3000).promise().done(function(){
-			console.log(i, "finish");
-		});
-		
+			$('#b'+i+i).fadeOut('slow').delay(3000).promise().done(function(){
+				console.log(i, "finish");
+			});
+
 		var i;
 
 		function msgLoop (i) {
@@ -251,21 +253,70 @@ $('document').ready(function(){
 						}
 					});
 			}
-				
+
 			// if(i==2){
 			// 	$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
 			// 		$('.cake').fadeIn('fast');
 			// 	});
-				
-			// }		
 
-		// });
+			// }
+
+			// });
 			// body...
 		}
-		
+
 		msgLoop(0);
-		
+
 	});
+
+	let date = {
+		timestamp : 1203264000000,
+		date : '2008-02-18'
+	}
+
+	let time = getDate().year - 2008
+	$('#age').text(time)
+
+	if (time >= 18){
+		$('#age-good').delay(12500).fadeIn('slow')
+	}
+
+	setInterval(()=>{
+		calculateTimeDifference(date.timestamp)
+	},1000)
+
+
+	function calculateTimeDifference(givenTimestamp) {
+		// 获取当前时间的时间戳（毫秒）
+		const currentTimestamp = getDate().timeStatus
+
+		// 计算时间差（毫秒）
+		const diffInMilliseconds = currentTimestamp - givenTimestamp;
+
+		// 将毫秒转换为秒、分钟、小时和天
+		const millisecondsPerSecond = 1000;
+		const millisecondsPerMinute = millisecondsPerSecond * 60;
+		const millisecondsPerHour = millisecondsPerMinute * 60;
+		const millisecondsPerDay = millisecondsPerHour * 24;
+
+		// 计算相差的天数、小时数、分钟数和秒数
+		const daysDifference = Math.floor(diffInMilliseconds / millisecondsPerDay);
+		const hoursDifference = Math.floor((diffInMilliseconds % millisecondsPerDay) / millisecondsPerHour);
+		const minutesDifference = Math.floor((diffInMilliseconds % millisecondsPerHour) / millisecondsPerMinute);
+		const secondsDifference = Math.floor((diffInMilliseconds % millisecondsPerMinute) / millisecondsPerSecond);
+		$("#user-date-msg").text(`${daysDifference} 天 ${hoursDifference} 小时 ${minutesDifference} 分钟 ${secondsDifference} 秒`)
+	}
+
+	function getDate() {
+		let date = new Date()
+		return {
+			year: date.getFullYear(),
+			month: date.getMonth() + 1,
+			date: date.getDate(),
+			sec: date.getSeconds(),
+			timeStatus: date.getTime()
+		}
+	}
 });
 
 
